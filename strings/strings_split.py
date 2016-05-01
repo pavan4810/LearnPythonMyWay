@@ -1,7 +1,8 @@
 """
-Notes:
+Notes: =========================================================================
 Notes: string.split(separator character within single or double quotes)
 Notes:   Ex:  sentense.split(' '), sentense.split(" "), sentense.split('/')
+Notes:
 """
 
 def split_sentense(sentense, separator):

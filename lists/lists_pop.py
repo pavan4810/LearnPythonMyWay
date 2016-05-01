@@ -1,8 +1,9 @@
 """
-Notes:
+Notes: =========================================================================
 Notes: list.pop(index)
 Notes:   This function pops an element from the list.
 Notes:   Ex: list.pop(0), list.pop(1), list.pop(-1) list.pop(-2)
+Notes:
 """
 
 def pop_a_word(words, index):
