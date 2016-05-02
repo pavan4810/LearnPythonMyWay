@@ -1,2 +1,2 @@
-# LearnPythonTheHardWay
+# LearnPythonMyWay
 #
