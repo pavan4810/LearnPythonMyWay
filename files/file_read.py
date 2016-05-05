@@ -12,6 +12,17 @@ Notes:      0 means unbuffered,
 Notes:      1 means line buffered, and
 Notes:      larger numbers specify the buffer size.
 Notes:
+Notes: fd.read() reads entire file content
+Notes:
+Notes: fd.seek(offset[, whence]) adjusts files offset.
+Notes:      whence 0: offset from start of file
+Notes:      whence 1: relative to current position
+Notes:      whence 2: offset from end
+Notes:
+Notes: fd.tell() current file position, an integer.
+Notes:
+Notes: fd.readline() reads one line
+Notes:
 """
 
 from sys import argv
@@ -27,6 +38,12 @@ print "Here's is your file %r:" %(filename)
 
 # Read and print file contents
 print fd.read()
+
+# reset file position offset
+fd.seek(0)
+
+# Read a line
+print fd.readline()
 
 # Close file.
 fd.close()

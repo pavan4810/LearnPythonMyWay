@@ -1,17 +1,6 @@
 """
 Notes: =========================================================================
-Notes: open(filename [, mode [,buffering]])
-Notes:   This function opens specified file for file operations.
-Notes:   mode:
-Notes:      "r"-reading (default),
-Notes:       "w"-writing,
-Notes:       "a"-appending
-Notes:       append "+" to mode for simultanous read and write.
-Notes:   Buffering: If the buffering argument is given,
-Notes:      0 means unbuffered,
-Notes:      1 means line buffered, and
-Notes:      larger numbers specify the buffer size.
-Notes:  
+Notes: fd.write(data) writes data into file
 Notes:
 """
 
