@@ -2,6 +2,8 @@
 Notes: =========================================================================
 Notes: fd.write(data) writes data into file
 Notes:
+Notes: fd.truncate(ToBytes) truncates the file
+Notes:
 """
 
 from sys import argv
@@ -19,6 +21,12 @@ line2 = raw_input("Line2: ")
 line3 = raw_input("Line3: ")
 
 # Write to file. Need to add new line character
+fd.write(line1)
+fd.write("\n")
+
+# Truncate the file.
+fd.truncate(0)
+
 fd.write(line1)
 fd.write("\n")
 fd.write(line2)

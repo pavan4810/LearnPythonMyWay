@@ -23,12 +23,17 @@ Notes: fd.tell() current file position, an integer.
 Notes:
 Notes: fd.readline() reads one line
 Notes:
+Notes: exists(filename) to check whether file exists or not
 """
 
 from sys import argv
+from os.path import exists
 
 # Must provide exactly one argument
 script, filename = argv
+
+# Check whether file exists
+print "Does the input file exist? %r" % exists(filename)
 
 # Default mode is reading.
 fd = open(filename)
@@ -43,6 +48,7 @@ print fd.read()
 fd.seek(0)
 
 # Read a line
+print "Reading single line from file"
 print fd.readline()
 
 # Close file.
