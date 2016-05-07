@@ -17,3 +17,6 @@ elif condition1 or condition2:
     print "Either condition1 is True or condition2 is True, but not both"
 else:
     print "Both condition1 and condition2 are False"
+
+if not condition2:
+    print "condition2 is False"
