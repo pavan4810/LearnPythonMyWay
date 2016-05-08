@@ -14,10 +14,11 @@ Notes:
 value1 = 10
 value2 = 3
 
-print  "%r  +   %r   =  %r" %(value1, value2, value1+value2)
-print  "%r  -   %r   =  %r" %(value1, value2, value1-value2)
-print  "%r  *   %r   =  %r" %(value1, value2, value1*value2)
-print  "%r  /   %r   =  %r" %(value1, value2, value1/value2)
-print  "%r  / %r   =  %r" %(value1, float(value2), value1/float(value2))
-print  "%r  **  %r   =  %r" %(value1, value2, value1**value2)
-print  "%r  %%   %r   =  %r" %(value1, value2, value1%value2)
+print  "%r   +   %r     =  %r" %(value1, value2, value1+value2)
+print  "%r   -   %r     =  %r" %(value1, value2, value1-value2)
+print  "%r   *   %r     =  %r" %(value1, value2, value1*value2)
+print  "%r   /   %r     =  %r" %(value1, value2, value1/value2), "(int / int = int)"
+print  "%r   /   %r   =  %r" %(value1, float(value2), value1/float(value2)), "(int / float = float)"
+print  "%r   //  %r   =  %r" %(value1, float(value2), value1//float(value2)), "(int // float = float (with discarded fractional part))"
+print  "%r   **  %r     =  %r" %(value1, value2, value1**value2)
+print  "%r   %%   %r     =  %r" %(value1, value2, value1%value2)

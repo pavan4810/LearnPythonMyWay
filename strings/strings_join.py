@@ -36,3 +36,18 @@ input_list = ['P', 'a', 'v', 'a', 'n']
 stuff = ''.join(input_list)
 print stuff
 
+
+#===============================================================================
+# string concatenation
+print 3*"Pavan " + 2 * "Kumar " + 1 * "Avala"
+
+# It becomes a single string, without comma.
+name = ('Pavan '
+        'Kumar '
+        'Avala')
+print name
+
+name = ('Pavan ',
+        'Kumar ',
+        'Avala')
+print name
