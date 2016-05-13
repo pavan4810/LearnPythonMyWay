@@ -29,6 +29,15 @@ Notes:           : It is possible to nest lists.
 Notes: list      = [list1, list2]
 Notes: list[x][y]
 Notes:
+Notes: del list[i]
+Notes:           : Deletes list element at position i.
+Notes:
+Notes: del list[x:y]
+Notes:           : Deletes list elements from x (included) to y (excluded)
+Notes:
+Notes: del list[:]
+Notes:           : Deletes all elements in the list
+Notes:
 """
 print " list[0]   :  Returns item in 0th position"
 print " list[5]   :  Returns item in 5th position"
