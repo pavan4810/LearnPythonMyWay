@@ -1,8 +1,25 @@
+"""
+Notes: =========================================================================
+Notes:  print can be used with single quotes or double quotes.
+Notes:
+Notes:  str.format()
+Notes:      print 'Pavan {} Avala the {}!'.format('Kumar', 'Great')
+Notes:
+Notes:  str.rjust(x)
+Notes:  str.ljust(x)
+Notes:  str.center(x)
+Notes:
+Notes:  str.zfill()
+Notes:      Pads a numeric string on the left with zeros.
+Notes:      It understands about plus and minus signs.
+Notes:
+"""
+
 print "Print using double quotes"
 print 'Print using single quotes'
 print "Observe how 'single quote' is used"
 print 'Observe how "double quote" is used'
-
+print ""
 print """
   Three double-quotes are used
   to print multi-line text.
@@ -65,12 +82,22 @@ print "The story of {0:10s} {1:10s} {3:20s} in {2:2s} days.".format('Pavan', 'Le
 
 #===============================================================================
 # Fancy output formatting with spaces - rjust(#ofspaces), ljust(#ofspaces)
-print "The story of %s %s %s in %s days." %(repr("Pavan").ljust(10), repr("Learning").ljust(20), repr("Python").ljust(10),
-    repr(7).ljust(2))
+print "The story of %s %s %s in %s days." %(repr("Pavan").ljust(10),
+                                            repr("Learning").ljust(20),
+                                            repr("Python").ljust(10),
+                                            repr(7).ljust(2))
 
 # Fancy output formatting with spaces - rjust(#ofspaces), ljust(#ofspaces)
-print "The story of %s %s %s in %s days." %(repr("Pavan").rjust(10), repr("Learning").rjust(20), repr("Python").rjust(10),
-    repr(7).rjust(2))
+print "The story of %s %s %s in %s days." %(repr("Pavan").center(10),
+                                            repr("Learning").center(20),
+                                            repr("Python").center(10),
+                                            repr(7).center(2))
+
+# Fancy output formatting with spaces - rjust(#ofspaces), ljust(#ofspaces)
+print "The story of %s %s %s in %s days." %(repr("Pavan").rjust(10),
+                                            repr("Learning").rjust(20),
+                                            repr("Python").rjust(10),
+                                            repr(7).rjust(2))
 
 #left adjust
 for x in range(1, 10):
@@ -83,3 +110,15 @@ for x in range(1, 10):
     print repr(x).rjust(2), repr(x*x).rjust(3),
     # Note trailing comma on previous line, which help in continuation of printing
     print repr(x*x*x).rjust(4)
+print ""
+
+
+#===============================================================================
+numeric_string = '12'
+print numeric_string.zfill(5)
+
+numeric_string = '-3.14'
+print numeric_string.zfill(7)
+
+numeric_string = '3.14159265359'
+print numeric_string.zfill(5)
