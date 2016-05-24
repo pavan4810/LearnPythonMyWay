@@ -1,8 +1,7 @@
 """
 Notes: =========================================================================
-Notes: class ClassName[(baseclass)]:
-Notes:      class Dog:
-Notes:      class Dog(Animal):
+Notes: class ClassName:
+Notes:  Ex:     class Dog:
 Notes:
 Notes: Mutable (lists and dictionaries) objects will be shared across.
 """
