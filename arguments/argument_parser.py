@@ -11,10 +11,12 @@ Notes:
 
 import argparse
 
-def fib(n):
+def fib(n, prin):
     a, b = 0,1
     for i in range(n):
         a,b = b, a+b
+        if prin:
+            print a
     return a
 
 
@@ -25,6 +27,7 @@ def Main():
     # Create mutually exclusive arguments group and add arguments.
     group = parser.add_mutually_exclusive_group()
 
+    # store_true gives boolean value.
     group.add_argument("-v", "--verbose", help="Verbose output",
                        action="store_true")
 
@@ -37,14 +40,17 @@ def Main():
     parser.add_argument("num", help="The fibonacci number that you wish to "+\
                                     "calculate", type=int)
 
-    parser.add_argument("-o", "--output", help="Output the result to a file",
-                        action="store_true")
+    parser.add_argument("-o", "--output", dest='fname',
+                        help="Output the result to a file")
+
+    parser.add_argument("-a", "--all", action="store_true", dest='prin',
+                        default=False, help="Print all numbers upto n")
 
 
     # Parge arguments.
     args = parser.parse_args()
 
-    result = fib(args.num)
+    result = fib(args.num, args.prin)
     
 
     if args.verbose:
@@ -54,9 +60,8 @@ def Main():
     else:
         print "Fib(%dth) = %d"%(args.num, result)
 
-
-    if args.output:
-        with open("temp.txt", "a") as f:
+    if args.fname is not None:
+        with open(args.fname, "a") as f:
             f.write(str(result) + "\n")
 
 
