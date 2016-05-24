@@ -2,8 +2,10 @@
 Notes: =========================================================================
 Notes: regular expression matching
 Notes:      re.match() tries to match pattern at the begining of the string.
-Notes:
+Notes: 
 Notes:      re.search() tries to search for pattern in entire string.
+Notes: 
+Notes:      result.group() gives the matched string.
 Notes: 
 """
 

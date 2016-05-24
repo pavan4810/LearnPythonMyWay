@@ -1,10 +1,13 @@
 """
 Notes: =========================================================================
-Notes: regular expression matching
-Notes:      re.match() tries to match pattern at the begining of the string.
+Notes: regular expression matching option flags.
 Notes:
-Notes:      re.search() tries to search for pattern in entire string.
-Notes: 
+Notes:      re.I    -   Ignore case matching.
+Notes:      re.M    -   Makes $ match the end of line and ^ the start of line.
+Notes:      re.S    -   Makes . (dot) match any character including new line.
+Notes:      re.U    -   Interprets in Unicode.
+Notes:      re.X    -   Ignore white spaces within the pattern
+Notes:      
 """
 
 import re
