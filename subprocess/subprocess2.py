@@ -21,6 +21,9 @@ Notes:      Do not use stdout=PIPE or stderr=PIPE with this function as that
 Notes:      can deadlock based on the child process output volume.
 Notes:      Use Popen with the communicate() method when you need pipes.
 Notes:
+Notes:      So, best way to use subprocess.call is as follows
+Notes:          subprocess.check_call([arg1, arg2, ...])
+otes:
 Notes: TODO : Explore more about subprocess.check_call()
 """
 
@@ -36,44 +39,51 @@ print "\nsubprocess.check_call(['ls', '-l']) has returned",\
 
 
 #===============================================================================
-# Ideally, I expect following two to raise same exception, but seems different.
+# Ideally, I expect following three to raise same exception, but seems not.
 try:
-    subprocess.check_call(['exit', '9'])
+    returncode = subprocess.check_call(['exit', '9'])
 except subprocess.CalledProcessError as e:
     print "\nsubprocess.check_call(['exit', '9']) has raised "+\
           "subprocess.CalledProcessError exception with returncode ",\
           e.returncode
 except:
-    print "\nsubprocess.check_call(['exit', '9']) raised different exception"
-
-
-try:
-    subprocess.check_call('exit 9', shell=True)
-except subprocess.CalledProcessError as e:
-    print "\nsubprocess.check_call('exit 9', shell=True) has raised "+\
-          "subprocess.CalledProcessError exception with returncode ",\
-          e.returncode
-except:
-    print "\nsubprocess.check_call('exit 9', shell=True) has raised "+\
-          "different exception"
-
-
-#===============================================================================
-# Ideally, I expect following two to behave similar, but they seems different.
-try:
-    returncode = subprocess.check_call('exit 0', shell=True)
-except subprocess.CalledProcessError as e:
-    print "\nsubprocess.check_call('exit 0', shell=True) has raised "+\
-          "subprocess.CalledProcessError exception with returncode ",\
-          e.returncode
-except:
-    print "\nsubprocess.check_call('exit 0', shell=True) has raised "+\
+    print "\nsubprocess.check_call(['exit', '9']) has raised "+\
           "different exception"
 else:
-    print "\nsubprocess.check_call('exit 0', shell=True) has returned",\
+    print "\nsubprocess.check_call(['exit', '9']) has returned :",\
+          returncode
+
+try:
+    returncode = subprocess.check_call(['exit', '9'], shell=True)
+except subprocess.CalledProcessError as e:
+    print "\nsubprocess.check_call(['exit', '9'], shell=True) has raised "+\
+          "subprocess.CalledProcessError exception with returncode ",\
+          e.returncode
+except:
+    print "\nsubprocess.check_call(['exit', '9'], shell=True) has raised "+\
+          "different exception"
+else:
+    print "\nsubprocess.check_call(['exit', '9'], shell=True) has returned :",\
           returncode
 
 
+try:
+    returncode = subprocess.check_call('exit 9', shell=True)
+except subprocess.CalledProcessError as e:
+    print "\nsubprocess.check_call('exit 9', shell=True) has raised "+\
+          "subprocess.CalledProcessError exception with returncode ",\
+          e.returncode
+except:
+    print "\nsubprocess.check_call('exit 9', shell=True) has raised "+\
+          "different exception"
+else:
+    print "\nsubprocess.check_call('exit 9', shell=True) has returned :",\
+          returncode
+print ""
+
+
+#===============================================================================
+# Ideally, I expect following three to raise same exception, but seems not.
 try:
     returncode = subprocess.check_call(['exit', '0'])
 except subprocess.CalledProcessError as e:
@@ -88,31 +98,58 @@ else:
           returncode
 
 
-#===============================================================================
-# Ideally, I expect following two to behave similar, but they seems different.
 try:
-    returncode = subprocess.check_call('bash -c exit 0', shell=True)
+    returncode = subprocess.check_call(['exit', '0'], shell=True)
 except subprocess.CalledProcessError as e:
-    print "\nsubprocess.check_call('bash -c exit 0', shell=True) has raised "+\
+    print "\nsubprocess.check_call(['exit', '0'], shell=True) has raised "+\
           "subprocess.CalledProcessError exception with returncode ",\
           e.returncode
 except:
-    print "\nsubprocess.check_call('bash -c exit 0', shell=True) has raised "+\
-          "different exception"
+    print "\nsubprocess.check_call(['exit', '0'], shell=True) has raised "+\
+           "different exception"
 else:
-    print "\nsubprocess.check_call('bash -c exit 0', shell=True) has returned",\
+    print "\nsubprocess.check_call(['exit', '0'], shell=True) has returned",\
           returncode
 
 
 try:
-    returncode = subprocess.check_call('bash -c exit 9', shell=True)
+    returncode = subprocess.check_call('exit 0', shell=True)
 except subprocess.CalledProcessError as e:
-    print "\nsubprocess.check_call('bash -c exit 9', shell=True) has raised "+\
+    print "\nsubprocess.check_call('exit 0', shell=True) has raised "+\
           "subprocess.CalledProcessError exception with returncode ",\
           e.returncode
 except:
-    print "\nsubprocess.check_call('bash -c exit 9', shell=True) has raised "+\
+    print "\nsubprocess.check_call('exit 0', shell=True) has raised "+\
           "different exception"
 else:
-    print "\nsubprocess.check_call('bash -c exit 9', shell=True) has returned",\
+    print "\nsubprocess.check_call('exit 0', shell=True) has returned",\
+          returncode
+print ""
+
+
+#===============================================================================
+try:
+    returncode = subprocess.check_call('ls pavan', shell=True)
+except subprocess.CalledProcessError as e:
+    print "\nsubprocess.check_call('ls pavan', shell=True) has raised "+\
+          "subprocess.CalledProcessError exception with returncode ",\
+          e.returncode
+except:
+    print "\nsubprocess.check_call('ls pavan', shell=True) has raised "+\
+          "different exception"
+else:
+    print "\nsubprocess.check_call('ls pavan', shell=True) has returned :",\
+          returncode
+
+try:
+    returncode = subprocess.check_call(['ls', 'pavan'])
+except subprocess.CalledProcessError as e:
+    print "\nsubprocess.check_call(['ls', 'pavan']) has raised "+\
+          "subprocess.CalledProcessError exception with returncode ",\
+          e.returncode
+except:
+    print "\nsubprocess.check_call(['ls', 'pavan']) has raised "+\
+          "different exception"
+else:
+    print "\nsubprocess.check_call(['ls', 'pavan']) has returned :",\
           returncode

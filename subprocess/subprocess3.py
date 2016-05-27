@@ -1,17 +1,17 @@
 """
 Notes: =========================================================================
-NNotes:  subprocess.check_call(args, *, stdin=None, stdout=None,
-Notes:                           stderr=None, shell=False)
+Notes: subprocess.check_output(args, *, stdin=None, stdout=None, stderr=None,
+Notes:                                  shell=False, universal_newlines=False)
 Notes:
-Notes:      Run the command described by args,
+Notes:      Run the command with args and return its ouput as a byte string.
 Notes:      Wait for command to complete, then
 Notes:
-Notes:      If the return code was zero then return,
-Notes:      otherwise raise CalledProcessError. The CalledProcessError object
-Notes:      will have the return code in the returncode attribute.
+Notes:      If the return code was non-zero, it raises a CalledProcessError.
+Notes:      The CalledProcessError object will have the return code in the
+Notes:      "returncode" attribute and any output in "output" attribute.
 Notes:
-Notes:      If first argument is "string command" and have spaces,
-Notes:          then shell=True is required.
+Notes:      If first argument is "string command" and have spaces in it,
+Notes:      then shell=True is required.
 Notes:
 Notes:      If first argument is a list, then shell=True is not required.
 Notes:
@@ -22,78 +22,139 @@ Notes:      can deadlock based on the child process output volume.
 Notes:      Use Popen with the communicate() method when you need pipes.
 Notes:
 Notes:      So, best way to use subprocess.call is as follows
-Notes:          subprocess.call([arg1, arg2, ...])
+Notes:          subprocess.check_output([arg1, arg2, ...])
 otes:
-Notes:
+Notes: TODO : Explore more about subprocess.check_output()
 Notes:
 """
 
 import subprocess
 
-# Command with space, need shell=True
-print "Output from : ", "subprocess.check_call('ls -l', shell=True)"
-print "Return code ", subprocess.check_call("ls -l", shell=True)
+# Command with space in it, need shell=True
+print "\nsubprocess.check_output('ls -l', shell=True) has returned :",\
+      subprocess.check_output("ls -l", shell=True)
 
-print "Output from : ", "subprocess.check_call(['ls', '-l'])"
-print "Return code ", subprocess.check_call(['ls', '-l'])
+print "\nsubprocess.check_output(['ls', '-l']) has returned :",\
+      subprocess.check_output(['ls', '-l'])
 
-print subprocess.check_call("ls -l")
-print subprocess.check_call("ls -l".split())
-print subprocess.check_call("exit 9", shell=True)
 
-#print subprocess.check_output(['bash', '-c', 'ls -l'])
-#count = subprocess.check_output(['bash', '-c', 'ls -l | wc -l'])
-#print "Count = ", count
-#
 
-#try:
-#    subprocess.check_call("exit 9", shell=True)
-#except subprocess.CalledProcessError as p:
-#    print "Exited with code", p.returncode
-#    print "Exited with code", subprocess.call("exit 9", shell=True)
+#===============================================================================
+# Ideally, I expect following three to raise same exception, but seems not.
+try:
+    returncode = subprocess.check_output(['exit', '9'])
+except subprocess.CalledProcessError as e:
+    print "\nsubprocess.check_output(['exit', '9']) has raised "+\
+          "subprocess.CalledProcessError exception with returncode ",\
+          e.returncode
+except:
+    print "\nsubprocess.check_output(['exit', '9']) has raised "+\
+          "different exception"
+else:
+    print "\nsubprocess.check_output(['exit', '9']) has returned :",\
+          returncode
 
-#p = subprocess.Popen(['ls', '-l'])
-#(output, error) = p.communicate()
-#print output
+try:
+    returncode = subprocess.check_output(['exit', '9'], shell=True)
+except subprocess.CalledProcessError as e:
+    print "\nsubprocess.check_output(['exit', '9'], shell=True) has raised "+\
+          "subprocess.CalledProcessError exception with returncode ",\
+          e.returncode
+except:
+    print "\nsubprocess.check_output(['exit', '9'], shell=True) has raised "+\
+          "different exception"
+else:
+    print "\nsubprocess.check_output(['exit', '9'], shell=True) has returned :",\
+          returncode
 
-#output = subprocess.check_output(['bash', '-c', 'ls /proc/*/pavan 2> /dev/null | wc -l'])
-#if int(output) > 0:
-#    for line in output.splitlines():
-#      print "Line: ", line
 
-#p = subprocess.Popen(['bash', '-c', 'ls /proc/*/maps'], stdout=subprocess.PIPE)
-#(output, error) = p.communicate()
-#print type(output), type(error)
-#for line in (output):
-#  print "Output: ", line
-#for line in (error):
-#  print "Error: ", line
+try:
+    returncode = subprocess.check_output('exit 9', shell=True)
+except subprocess.CalledProcessError as e:
+    print "\nsubprocess.check_output('exit 9', shell=True) has raised "+\
+          "subprocess.CalledProcessError exception with returncode ",\
+          e.returncode
+except:
+    print "\nsubprocess.check_output('exit 9', shell=True) has raised "+\
+          "different exception"
+else:
+    print "\nsubprocess.check_output('exit 9', shell=True) has returned :",\
+          returncode
+print ""
 
-#command = "ls -l"
-#output = subprocess.call(command.split(), shell=True)
-#print type(output)
-#
-#output = subprocess.call(command.split(), shell=False)
-#print type(output)
 
-#command = "ls /proc/*/maps"
-#command = "exit 2"
-#p = subprocess.Popen(["bash", "-c", command],
-#                     stdout=subprocess.PIPE,
-#                     stderr=subprocess.PIPE)
-#print "Pid = ", p.pid, "Return code = ", p.returncode
-#(output, error) = p.communicate()
-#for line in output.splitlines():
-#  print "O/P: ", line
-#for line in error.splitlines():
-#  print "Error: ", line
+#===============================================================================
+# Ideally, I expect following three to raise same exception, but seems not.
+try:
+    returncode = subprocess.check_output(['exit', '0'])
+except subprocess.CalledProcessError as e:
+    print "\nsubprocess.check_output(['exit', '0']) has raised "+\
+          "subprocess.CalledProcessError exception with returncode ",\
+          e.returncode
+except:
+    print "\nsubprocess.check_output(['exit', '0']) has raised "+\
+           "different exception"
+else:
+    print "\nsubprocess.check_output(['exit', '0']) has returned :",\
+          returncode
 
-#command = "ls /proc/*/maps"
-#command = "ls"
-#p = subprocess.Popen(["bash", "-c", command],
-#                     stdout=subprocess.PIPE,
-#                     stderr=subprocess.PIPE)
-#print "Pid = ", p.pid, "Return code = ", p.returncode
-#while True:
-#    char = p.stdout.read(1)
-#    print char,
+
+try:
+    returncode = subprocess.check_output(['exit', '0'], shell=True)
+except subprocess.CalledProcessError as e:
+    print "\nsubprocess.check_output(['exit', '0'], shell=True) has raised "+\
+          "subprocess.CalledProcessError exception with returncode ",\
+          e.returncode
+except:
+    print "\nsubprocess.check_output(['exit', '0'], shell=True) has raised "+\
+           "different exception"
+else:
+    print "\nsubprocess.check_output(['exit', '0'], shell=True) has returned :",\
+          returncode
+
+
+try:
+    returncode = subprocess.check_output('exit 0', shell=True)
+except subprocess.CalledProcessError as e:
+    print "\nsubprocess.check_output('exit 0', shell=True) has raised "+\
+          "subprocess.CalledProcessError exception with returncode ",\
+          e.returncode
+except:
+    print "\nsubprocess.check_output('exit 0', shell=True) has raised "+\
+          "different exception"
+else:
+    print "\nsubprocess.check_output('exit 0', shell=True) has returned :",\
+          returncode
+print ""
+
+
+#===============================================================================
+try:
+    returncode = subprocess.check_output('ls pavan', shell=True,\
+                                         stderr=subprocess.STDOUT)
+except subprocess.CalledProcessError as e:
+    print "\nsubprocess.check_output('ls pavan', shell=True) has raised "+\
+          "subprocess.CalledProcessError exception with returncode ",\
+          e.returncode
+    print "CMD: %s \nOUTPUT: %s" %(e.cmd, e.output)
+except:
+    print "\nsubprocess.check_output('ls pavan', shell=True) has raised "+\
+          "different exception"
+else:
+    print "\nsubprocess.check_output('ls pavan', shell=True) has returned :",\
+          returncode
+
+try:
+    returncode = subprocess.check_output(['ls', 'pavan'],\
+                                         stderr=subprocess.STDOUT)
+except subprocess.CalledProcessError as e:
+    print "\nsubprocess.check_output(['ls', 'pavan']) has raised "+\
+          "subprocess.CalledProcessError exception with returncode ",\
+          e.returncode
+    print "CMD: %s \nOUTPUT: %s" %(e.cmd, e.output)
+except:
+    print "\nsubprocess.check_output(['ls', 'pavan']) has raised "+\
+          "different exception"
+else:
+    print "\nsubprocess.check_output(['ls', 'pavan']) has returned :",\
+          returncode
