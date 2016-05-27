@@ -12,12 +12,19 @@ Notes:      Run the command described by args,
 Notes:      Wait for command to complete, then
 Notes:      return the returncode attribute.
 Notes:
-Notes:      shell is False by default.
-Notes:
 Notes:      If first argument is "string command" and have spaces,
 Notes:          then shell=True is required.
 Notes:
 Notes:      If first argument is a list, then shell=True is not required.
+Notes:
+Notes:      Using shell=True cab be security hazard.
+Notes:
+Notes:      Do not use stdout=PIPE or stderr=PIPE with this function as that
+Notes:      can deadlock based on the child process output volume.
+Notes:      Use Popen with the communicate() method when you need pipes.
+Notes:
+Notes:      So, finally best way to use subprocess.call is as follows
+Notes:          subprocess.call([arg1, arg2, ...])
 Notes:
 """
 
