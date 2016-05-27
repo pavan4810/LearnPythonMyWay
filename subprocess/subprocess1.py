@@ -26,6 +26,15 @@ Notes:
 Notes:      So, finally best way to use subprocess.call is as follows
 Notes:          subprocess.call([arg1, arg2, ...])
 Notes:
+Notes:
+Notes:  Exceptions:
+Notes:      CalledProcessError:
+Notes:          if the called process returns a non-zero return code.
+Notes:      ValueError:
+Notes:          if Popen is called with invalid arguments.
+Notes:      OSError:
+Notes:          if trying to execute a non-existent file.
+Notes:
 """
 
 import subprocess

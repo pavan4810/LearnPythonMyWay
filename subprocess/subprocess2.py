@@ -23,7 +23,7 @@ Notes:      Use Popen with the communicate() method when you need pipes.
 Notes:
 Notes:      So, best way to use subprocess.call is as follows
 Notes:          subprocess.check_call([arg1, arg2, ...])
-otes:
+Notes:
 Notes: TODO : Explore more about subprocess.check_call()
 """
 
