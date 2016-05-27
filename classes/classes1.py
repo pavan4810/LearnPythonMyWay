@@ -9,13 +9,12 @@ Notes: Mutable (lists and dictionaries) objects will be shared across.
 class Dog:
   """Dog class """
 
-  kind = "canine"
+  kind = "canine"       # This is class variable shared by all instances.
   tricks = []
 
   def __init__(self,name):
-    self.name = name
-    # Create new mutable oject during initialization.
-    self.tricks2 = []
+    self.name = name    # This is instance variable unique to each instance.
+    self.tricks2 = []   # Create new mutable object during initialization.
 
   def add_trick(self, trick):
     self.tricks.append(trick)
