@@ -14,13 +14,15 @@ Notes:      > c.close()
 Notes: 
 Notes:      > s.close()
 Notes: 
+Notes:      socket.gethostname() returns hostname.
+Notes: 
 """
 
 import socket
 
 def Main():
     # server is tuple of hostname/address string and integer port number
-    server = ("127.0.0.1", 5000)
+    server = (socket.gethostname(), 5000)
 
     # first argument = address family.
     # Second argument = socket type ; SOCK_STREAM, SOCK_DGRAM
@@ -31,6 +33,7 @@ def Main():
 
     # Listen and specify maximum concurrent incoming connections.
     s.listen(1)
+    print "TCP Server started listening. Waiting for incoming connections ..."
 
     # Accept incoming connection and return connection id and client address.
     c,addr = s.accept()

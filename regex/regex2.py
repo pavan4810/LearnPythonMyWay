@@ -16,12 +16,15 @@ import optparse
 def Main():
     parser = optparse.OptionParser("Usage %prog -w <word> -f <file>")
 
+
+
     # Add arguments
     parser.add_option("-w", dest="word", type='string',
                       help="Specify a word to search for")
 
     parser.add_option("-f", dest='fname', type='string',
                       help="Specify a file to search")
+
 
 
     # Parge arguments.
@@ -33,6 +36,7 @@ def Main():
     else:
         word = options.word
         filename = options.fname
+
 
     searchfile = open(filename)
     linenumber = 0
