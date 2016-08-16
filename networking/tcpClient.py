@@ -14,7 +14,7 @@ Notes:
 import socket
 
 def Main():
-    server = ("127.0.0.1", 5000)
+    server = (socket.gethostname(), 5000)
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
